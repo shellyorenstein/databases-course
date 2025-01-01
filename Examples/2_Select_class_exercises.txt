@@ -32,3 +32,19 @@ on
 d.id = dg.director_id
 order by first_name, last_name, prob, genre
 ;
+
+
+# Sherlock Holmes with production period
+select 
+year as production_year
+, name
+, case 
+	when year < 1920 then 'Ancient' 
+	when year < 1939 then 'Pre WWII' 
+	when year > 1990 then 'New (for this dataset)' 
+    else 'In between'
+end as age
+from imdb_ijs.movies
+where 
+name like '%Sherlock Holmes%'
+order by year desc, name;
