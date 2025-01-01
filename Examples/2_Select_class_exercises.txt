@@ -1,0 +1,34 @@
+# Actors named Marilyn 
+Select * 
+from imdb_ijs.actors 
+where first_name = 'Marilyn' 
+order by last_name; 
+
+# Directors named Hitchcock
+Select * 
+from imdb_ijs.directors 
+where last_name = 'Hitchcock' 
+order by first_name; 
+
+# Actors whose first and last name start in the same letter
+Select left(first_name, 1) as first_letter
+, first_name
+, last_name
+from imdb_ijs.actors 
+where left(first_name, 1) = left(last_name,1) 
+order by first_name, last_name; 
+
+# A row per director and the related genres
+select
+first_name
+, last_name
+, prob
+, genre
+from 
+imdb_ijs.directors as d
+join
+imdb_ijs.directors_genres as dg
+on
+d.id = dg.director_id
+order by first_name, last_name, prob, genre
+;
