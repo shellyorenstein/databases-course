@@ -1,0 +1,48 @@
+# Just bring the movies
+select * # Data per item
+from imdb_ijs.movies; # Source of items
+
+# Bring Superman movies
+select * 
+from imdb_ijs.movies
+where name like '%Superman%' # Filter the items of items
+order by year;
+
+# From the first to the last
+select * 
+from imdb_ijs.movies
+where name like '%Superman%'
+order by year, name; # Sorting of items
+
+
+# Structure columns as we wish
+select year as production_year # Order of columns and their name is important!
+, name  
+from imdb_ijs.movies
+where name like '%Superman%'
+order by year, name;
+
+# Add genre from another table 
+select year as production_year 
+, name  
+, genre
+from imdb_ijs.movies as m
+join
+imdb_ijs.movies_genres as mg
+on
+m.id = mg.movie_id
+where name like '%Superman%'
+order by year, name, genre;
+
+# We want one record per movie, with all genres together
+select year as production_year 
+, name  
+, group_concat(distinct genre order by genre) as movie_genres
+from imdb_ijs.movies as m
+join
+imdb_ijs.movies_genres as mg
+on
+m.id = mg.movie_id
+where name like '%Superman%'
+group by year, name
+order by year, name;
