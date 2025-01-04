@@ -196,3 +196,45 @@ from
 imdb_ijs.movies as m
 ;
 
+# All movies with a Superman role
+select
+name, role, year
+from
+imdb_ijs.movies as m
+join
+imdb_ijs.roles as r
+on
+m.id = r.movie_id
+where
+lower(role) like '%superman%'
+order by name, role
+;
+
+# Pair of movies directed by the same director
+select
+f.name
+, s.name
+from
+imdb_ijs.movies as f
+join
+imdb_ijs.movies_directors as fmd
+on
+f.id = fmd.movie_id
+join
+imdb_ijs.movies_directors as smd
+on
+fmd.director_id = smd.director_id
+join
+imdb_ijs.movies as s
+on
+smd.movie_id = s.id
+where
+fmd.director_id = 34658
+and
+f.id <> s.id
+order by
+f.name
+, s.name
+;
+
+
