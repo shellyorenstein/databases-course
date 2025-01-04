@@ -78,4 +78,36 @@ and first_name = 'Alfred (I)'
 order by year, name
 ;
 
+# Directors and their movies (if exists)
+Select *
+from 
+imdb_ijs.directors as d
+left join
+imdb_ijs.movies_directors as md
+on
+d.id = md.director_id
+;
+
+
+# Directors that did not direct any movie
+Select d.*
+from 
+imdb_ijs.directors as d
+left join
+imdb_ijs.movies_directors as md
+on
+d.id = md.director_id
+where 
+md.director_id is null;
+
+# Movies without a director
+Select d.*
+from 
+imdb_ijs.directors as d
+right join # Don't do it. Strat in the first table and follow the same direction!
+imdb_ijs.movies_directors as md
+on
+d.id = md.director_id
+where 
+d.id is null;
 
