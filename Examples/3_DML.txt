@@ -5,7 +5,39 @@ from
 UNION SELECT 'Red'
 UNION SELECT 'Green'
 UNION SELECT 'White' 
-UNION SELECT 'Black') as c
+UNION SELECT 'Black') as c # Note - selected records are not guaranteed to come in the "storing" order
+;
+
+
+# Practical deviation from sets
+Select *
+from
+(SELECT 'Blue' AS Color
+UNION SELECT 'Red'
+UNION SELECT 'Green'
+UNION SELECT 'White' 
+UNION SELECT 'Black'
+UNION ALL SELECT 'Black'
+UNION ALL SELECT 'Black'
+UNION ALL SELECT 'Black'
+) as c 
+;
+
+
+# Distinct brings unique records, as in set
+# Beware - in cases it is handy there is probably an earlier severe mistake
+# in the database design or query
+Select distinct *
+from
+(SELECT 'Blue' AS Color
+UNION SELECT 'Red'
+UNION SELECT 'Green'
+UNION SELECT 'White' 
+UNION SELECT 'Black'
+UNION ALL SELECT 'Black'
+UNION ALL SELECT 'Black'
+UNION ALL SELECT 'Black'
+) as c 
 ;
 
 # Size
