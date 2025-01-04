@@ -170,5 +170,29 @@ id < 100
 ;
 
 
+# Delete using other table (handy in validations)
+DELETE m FROM 
+imdb_ijs.tmp_movies AS m 
+left JOIN 
+imdb_ijs.roles AS r
+on
+m.id=r.movie_id
+WHERE r.movie_id is null
+and m.id > 0 # bypass safe mode
+;
 
+# "Manual insert"
+insert into imdb_ijs.tmp_movies values (1000000, 'My Movie!', 2025, 10);
+
+# Insert with a query
+
+insert into  imdb_ijs.tmp_movies
+select
+id + 10000000
+, name
+, year + 100
+, m.rank + 1.0 # We mean the column, not the function and explain it with the table prefix
+from
+imdb_ijs.movies as m
+;
 
