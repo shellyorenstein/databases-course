@@ -40,6 +40,7 @@ UNION ALL SELECT 'Black'
 ) as c 
 ;
 
+
 # Size
 Select *
 from
@@ -142,4 +143,32 @@ on
 d.id = md.director_id
 where 
 d.id is null;
+
+
+# Creating a new table based on another
+DROP TABLE IF EXISTS imdb_ijs.tmp_movies; # Drop is important for reruns
+CREATE TABLE imdb_ijs.tmp_movies
+as
+select *
+from
+imdb_ijs.movies
+;
+
+CREATE UNIQUE INDEX tmp_movies_pk ON imdb_ijs.tmp_movies (id);
+
+# Change column value per row
+update imdb_ijs.tmp_movies
+set year = year + 1
+where
+id >= 0  # To bypass safe update mode - beware!
+;
+
+# Remove rows
+delete from imdb_ijs.tmp_movies
+where
+id < 100 
+;
+
+
+
 
