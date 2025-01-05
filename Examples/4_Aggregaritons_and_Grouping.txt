@@ -1,0 +1,147 @@
+# Aggregations
+select
+count(*) as cnt
+, count(distinct name) as movies_names
+, max(m.rank) as rank_max
+, min(m.rank) as rank_min
+, avg(m.rank) as rank_avg
+, std(m.rank) as rank_std
+, avg(if(m.rank >= 7,1,0)) as high_rank_prob
+from
+imdb_ijs.movies as m
+;
+
+# Grouping allows to split row by columns and aggregate them
+select
+year
+, count(*) as cnt
+, count(distinct name) as movies_names
+, avg(m.rank) as rank_avg
+, avg(if(m.rank >= 7,1,0)) as high_rank_prob
+from
+imdb_ijs.movies as m
+group by year
+order by year
+;
+
+
+
+# Actors by ranking
+select
+first_name
+, last_name
+, count(distinct movie_id) as movies
+, avg(m.rank) as rank_avg
+, avg(if(m.rank >= 7,1,0)) as high_rank_prob
+, group_concat(m.name) as movies
+from
+imdb_ijs.actors as a
+join
+imdb_ijs.roles as r
+on
+a.id = r.actor_id
+join
+imdb_ijs.movies as m
+on
+r.movie_id = m.id
+group by 
+first_name
+, last_name
+having
+count(distinct movie_id) >= 10
+order by rank_avg desc
+;
+
+# Movies per actor
+select
+actor_id
+, count(distinct movie_id) as movies
+from
+imdb_ijs.roles
+group by 
+actor_id
+;
+
+# Movies per actor, with those that never played (there are no such actors)
+select
+a.*
+, ifnull(movies, 0) as movies
+from
+imdb_ijs.actors as a
+left join (
+select
+actor_id
+, count(distinct movie_id) as movies
+from
+imdb_ijs.roles
+group by 
+actor_id
+) as movies_per_actor
+on
+a.id = movies_per_actor.actor_id
+order by 
+movies desc
+;
+
+# Movies per actor distribution
+select movies
+, count(*) as actors
+from (
+select
+actor_id
+, count(distinct movie_id) as movies
+from
+imdb_ijs.roles
+group by 
+actor_id ) as inSql
+group by movies
+order by movies
+; 
+
+# Movies per actor distribution, with zero movies
+select movies
+, count(*) as actors
+from (
+select
+a.*
+, ifnull(movies, 0) as movies
+from
+imdb_ijs.actors as a
+left join (
+select
+actor_id
+, count(distinct movie_id) as movies
+from
+imdb_ijs.roles
+group by 
+actor_id
+) as movies_per_actor
+on
+a.id = movies_per_actor.actor_id
+
+) as inSql # Only the inner query is changed
+group by movies
+order by movies
+; 
+
+
+# Movies with common actors
+DROP TABLE IF EXISTS imdb_ijs.movie_pairs_by_actors; # Drop is important for reruns
+create table imdb_ijs.movie_pairs_by_actors
+as
+select
+f.movie_id as fid
+, s.movie_id as sid
+, count(distinct f.actor_id) as actors
+from
+imdb_ijs.roles as f
+join
+imdb_ijs.roles as s
+on
+f.actor_id = s.actor_id
+group by 
+fid
+, sid
+having
+count(distinct f.actor_id) >= 1
+;
