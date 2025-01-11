@@ -145,3 +145,71 @@ fid
 having
 count(distinct f.actor_id) >= 1
 ;
+
+# In class exercises
+
+# Number of movies per role
+# (Answer has some "decorations")
+# Please see that you can explain the possible reasons to difference in the aggregations
+Select
+r.role
+, count(*) as cnt
+, count(distinct actor_id) as actors
+, count(distinct movie_id) as movies
+from
+imdb_ijs.roles as r
+group by 
+r.role
+order by cnt desc
+limit 200
+;
+
+# Movies pairs of the same director
+Select
+d.first_name
+, d.last_name
+, fm.name
+, sm.name
+from
+movies as fm
+join
+imdb_ijs.movies_directors as fmd
+on
+fm.id = fmd.movie_id
+join
+imdb_ijs.movies_directors as smd
+on
+fmd.director_id = smd.director_id
+join
+imdb_ijs.movies as sm
+on
+smd.movie_id = sm.id
+join
+imdb_ijs.directors as d
+on
+fmd.director_id = d.id
+where
+fmd.movie_id != smd.movie_id # Avoid reflexsivness
+and
+fmd.movie_id > smd.movie_id # No symmertry
+order by
+d.first_name, d.last_name, fm.name, sm.name
+;
+
+
+# Movies of director distribution (ignore directors without movies)
+select
+movies
+, count(*) as directors
+from
+(Select 
+director_id
+, count(distinct movie_id) as movies
+from
+imdb_ijs. movies_directors as md
+group by
+director_id) as inSql
+group by movies
+order by movies
+;
+
