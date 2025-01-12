@@ -1,0 +1,108 @@
+# Movies per actor distribution (Known example)
+select movies
+, count(*) as actors
+from (
+select
+actor_id
+, count(distinct movie_id) as movies
+from
+imdb_ijs.roles
+group by actor_id ) as inSql
+group by movies 
+order by movies
+;
+
+# Subquery in condition
+# Actors that did not play in any comedy
+Select *
+From imdb_ijs.actors
+Where id not in 
+(select actor_id from imdb_ijs.roles as r
+Join imdb_ijs.movies_genres as mg
+on r.movie_id = mg.movie_id
+Where genre = 'Comedy'
+) #comedy_actors
+
+# Actors that did not play in any comedy
+# Done properly...
+Select *
+From 
+imdb_ijs.actors as a 
+left join
+(select actor_id
+from imdb_ijs.roles as r
+Join 
+imdb_ijs.movies_genres as mg
+on 
+r.movie_id = mg.movie_id
+Where genre = 'Comedy') as comedy_actors
+on a.id = comedy_actors.actor_id
+Where actor_id is null
+;
+
+# Creating a view
+drop view if exists imdb_ijs.comedies;
+
+create view 
+imdb_ijs.comedies
+as
+select * 
+from
+imdb_ijs.movies_genres as mg
+where
+genre = 'Comedy';
+
+# Actors that did not play in any comedy
+# Done properly...And with a view
+Select *
+From 
+imdb_ijs.actors as a 
+left join
+(select actor_id
+from imdb_ijs.roles as r
+Join 
+imdb_ijs.comedies as c
+on 
+r.movie_id = c.movie_id) as comedy_actors
+on a.id = comedy_actors.actor_id
+Where actor_id is null
+;
+
+# Movies per actor distribution
+drop table if exists imdb_ijs.movies_per_actor;
+
+create table 
+imdb_ijs.movies_per_actor
+as
+select
+actor_id
+, count(distinct movie_id) as movies
+, 0.0 as prob
+from
+imdb_ijs.roles
+group by 
+actor_id
+; 
+CREATE UNIQUE INDEX movies_per_actor_pk ON imdb_ijs.movies_per_actor (actor_id);
+
+
+drop table if exists imdb_ijs.tmp;
+
+create table 
+imdb_ijs.tmp
+as
+select 
+count(*) as all_movies
+from 
+imdb_ijs.movies
+;
+
+update imdb_ijs.movies_per_actor
+join imdb_ijs.tmp
+on True # Usually there will be a "REAL" join here. We have only one row in tmp
+set imdb_ijs.movies_per_actor.prob = imdb_ijs.movies_per_actor.movies/imdb_ijs.tmp.all_movies
+where actor_id > 0
+;
+
+
+drop table if exists imdb_ijs.tmp; # clean up
