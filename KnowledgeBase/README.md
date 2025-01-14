@@ -22,3 +22,9 @@
 
 # MySql documentation
 1. [Create table](https://dev.mysql.com/doc/refman/8.4/en/create-table.html)
+
+# Database normalization examples
+1. [freecodecamp](https://www.freecodecamp.org/news/database-normalization-1nf-2nf-3nf-table-examples/#heading-examples-of-1nf-2nf-and-3nf)
+2. [Guru99](https://www.guru99.com/database-normalization.html)
+3. [Microsoft](https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description)
+4. [scholarhat](https://www.scholarhat.com/tutorial/sqlserver/database-normalization-basics)
