@@ -189,9 +189,9 @@ imdb_ijs.directors as d
 on
 fmd.director_id = d.id
 where
-fmd.movie_id != smd.movie_id # Avoid reflexsivness
+fmd.movie_id != smd.movie_id # Avoid reflexiveness
 and
-fmd.movie_id > smd.movie_id # No symmertry
+fmd.movie_id > smd.movie_id # No symmetry
 order by
 d.first_name, d.last_name, fm.name, sm.name
 ;
@@ -212,4 +212,5 @@ director_id) as inSql
 group by movies
 order by movies
 ;
+
 

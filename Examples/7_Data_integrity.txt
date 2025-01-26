@@ -47,7 +47,7 @@ name
 having cnt > 1
 order by cnt desc, name, year;
 
-# Generting query to count the rows in all tables
+# Generating query to count the rows in all tables
 Select 
 concat('Select count(*) from imdb_ijs.', TABLE_NAME, ' ;') as num_query
 from 
@@ -94,4 +94,5 @@ d.id = md.director_id
 where
 md.director_id is null
 ;
+
 
