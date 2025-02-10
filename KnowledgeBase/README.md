@@ -28,3 +28,6 @@
 2. [Guru99](https://www.guru99.com/database-normalization.html)
 3. [Microsoft](https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description)
 4. [scholarhat](https://www.scholarhat.com/tutorial/sqlserver/database-normalization-basics)
+
+# Exams
+1. [TAU 2008](https://courses.cs.tau.ac.il/0368-3458/databases2011/assignments/DB08.pdf)
