@@ -1,0 +1,111 @@
+drop table if exists imdb_ijs.movies_recommendations;
+
+create table imdb_ijs.movies_recommendations
+(base_movie_id int
+, recommended_movie_id int
+, recommendation int 
+, suggested_by varchar(255)
+, comment varchar(255)
+);
+
+# into bond_classification.csv
+Select distinct movie_id, name
+from 
+imdb_ijs.roles as r
+join
+imdb_ijs.movies as m
+on
+r.movie_id = m.id
+where
+role = 'James Bond'
+;
+
+insert into imdb_ijs.movies_recommendations
+with
+real_bond as (select 130945 as movie_id
+union select 335337
+union select 368419
+union select 86263
+union select 335336
+union select 368418
+union select 85871
+union select 92573
+union select 120574
+union select 130953
+union select 332065
+union select 372233
+union select 189403
+union select 192702
+union select 240521
+union select 117314
+union select 192514
+union select 203649
+union select 218808
+union select 312170
+union select 354178
+)
+Select b.movie_id, r.movie_id, 9, 'Idan', 'Both Bond movies'
+from
+real_bond as b
+, real_bond as r
+where
+b.movie_id != r.movie_id
+;
+
+
+insert into imdb_ijs.movies_recommendations
+with
+real_bond as (select 130945 as movie_id
+union select 335337
+union select 368419
+union select 86263
+union select 335336
+union select 368418
+union select 85871
+union select 92573
+union select 120574
+union select 130953
+union select 332065
+union select 372233
+union select 189403
+union select 192702
+union select 240521
+union select 117314
+union select 192514
+union select 203649
+union select 218808
+union select 312170
+union select 354178
+)
+, fake_bond as (select 21756 as movie_id
+union select 531
+union select 530
+union select 74724
+union select 91948
+union select 160295
+union select 165260
+union select 175469
+union select 223076
+union select 234188
+union select 165261
+union select 160315
+union select 230394
+union select 160424
+union select 130947
+union select 130949
+union select 160293
+union select 160319
+union select 168469
+union select 140431
+union select 76256
+union select 245547
+union select 123256
+union select 66192
+)
+Select b.movie_id, r.movie_id, 3, 'Idan', 'People that like Bond do not like its fakes'
+from
+real_bond as b
+, fake_bond as r
+where
+b.movie_id != r.movie_id
+;

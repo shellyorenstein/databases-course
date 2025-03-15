@@ -1,0 +1,46 @@
+movie_id,name,real,comment,in_sql
+21756,Ashakara,0,,union select 21756
+130945,GoldenEye,1,,union select 130945
+531,007: Agent Under Fire,0,a game?,union select 531
+530,007 Racing,0,a game?,union select 530
+335337,Tomorrow Never Dies,1,,union select 335337
+368419,"World Is Not Enough, The",1,,union select 368419
+74724,Cubby Broccoli: The Man Behind Bond,0,,union select 74724
+86263,Die Another Day,1,,union select 86263
+91948,Double-O Stunts,0,,union select 91948
+160295,Inside 'Dr. No',0,,union select 160295
+165260,James Bond 007: Everything or Nothing,0,a game?,union select 165260
+175469,Ken Adam: Designing Bond,0,,union select 175469
+223076,"Music of James Bond, The",0,,union select 223076
+234188,Nobody Does It Better: The Music of James Bond,0,,union select 234188
+335336,Tomorrow Never Dies,1,,union select 335336
+368418,"World Is Not Enough, The",1,,union select 368418
+165261,James Bond 007: Nightfire,0,a game?,union select 165261
+85871,Diamonds Are Forever,1,,union select 85871
+92573,Dr. No,1,,union select 92573
+120574,From Russia with Love,1,,union select 120574
+130953,Goldfinger,1,,union select 130953
+160315,Inside 'The Man with the Golden Gun',0,,union select 160315
+230394,Never Say Never Again,0,Not official yet with Sean Connery,union select 230394
+332065,Thunderball,1,,union select 332065
+372233,You Only Live Twice,1,,union select 372233
+160424,Inside Q's Laboratory,0,,union select 160424
+189403,Licence to Kill,1,,union select 189403
+192702,"Living Daylights, The",1,,union select 192702
+130947,Goldeneye: The Secret Life of Ian Fleming,0,,union select 130947
+130949,Goldenrock,0,,union select 130949
+160293,Inside 'Diamonds Are Forever',0,,union select 160293
+160319,Inside 'You Only Live Twice',0,,union select 160319
+168469,John Barry: Licence to Thrill,0,,union select 168469
+240521,On Her Majesty's Secret Service,1,,union select 240521
+117314,For Your Eyes Only,1,,union select 117314
+192514,Live and Let Die,1,,union select 192514
+203649,"Man with the Golden Gun, The",1,,union select 203649
+218808,Moonraker,1,,union select 218808
+312170,"Spy Who Loved Me, The",1,,union select 312170
+354178,"View to a Kill, A",1,,union select 354178
+140431,Hawaa wal kerd,0,,union select 140431
+76256,D4G,0,,union select 76256
+245547,Outwitted (1917/II),0,,union select 245547
+123256,Gam gai,0,,union select 123256
+66192,Clue??,0,,union select 66192
