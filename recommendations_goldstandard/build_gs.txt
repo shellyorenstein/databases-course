@@ -5,6 +5,7 @@ create table imdb_ijs.movies_recommendations
 , recommended_movie_id int
 , recommendation int 
 , suggested_by varchar(255)
+, justification varchar(255)
 , comment varchar(255)
 );
 
@@ -44,7 +45,7 @@ union select 218808
 union select 312170
 union select 354178
 )
-Select b.movie_id, r.movie_id, 9, 'Idan', 'Both Bond movies'
+Select b.movie_id, r.movie_id, 9, 'Idan', 'Both Bond movies', null
 from
 real_bond as b
 , real_bond as r
@@ -102,10 +103,28 @@ union select 245547
 union select 123256
 union select 66192
 )
-Select b.movie_id, r.movie_id, 3, 'Idan', 'People that like Bond do not like its fakes'
+Select b.movie_id, r.movie_id, 3, 'Idan', 'People that like Bond do not like its fakes', null
 from
 real_bond as b
 , fake_bond as r
 where
 b.movie_id != r.movie_id
+;
+
+drop table if exists imdb_ijs.movies_recommendations_agg;
+
+create table imdb_ijs.movies_recommendations_agg
+as
+select
+base_movie_id 
+, recommended_movie_id 
+, avg(recommendation) as recommendation
+, stddev(recommendation) as recommendation_std
+, count(distinct suggested_by) as suggested_by_num
+, count(distinct justification) as justifications_num
+from
+imdb_ijs.movies_recommendations
+group by
+base_movie_id 
+, recommended_movie_id 
 ;
