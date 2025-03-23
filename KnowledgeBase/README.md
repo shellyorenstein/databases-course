@@ -5,6 +5,12 @@
 1. [MySql functions](https://dev.mysql.com/doc/refman/8.4/en/functions.html)
 2. [Timeout](https://stackoverflow.com/questions/10563619/error-code-2013-lost-connection-to-mysql-server-during-query)
 
+# Tutorials
+1. [W3schools](https://www.w3schools.com/Sql/default.asp) - syntax oriented
+2. [SQLTutorial](https://www.sqltutorial.org/) - topic oriented
+3. [TutorialsPoint](https://www.tutorialspoint.com/sql/index.htm) - sytax oriented
+4. [GeekForGeek](https://www.geeksforgeeks.org/sql-tutorial/) - syntax oriented
+   
 # Market expectations
 1. [GeeksForGeeks database interview questions](https://www.geeksforgeeks.org/database-interview-questions/)
 2. [Coursera](https://www.coursera.org/articles/sql-interview-questions)
