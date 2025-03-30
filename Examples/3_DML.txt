@@ -1,3 +1,53 @@
+
+#############
+# All movies directed by Hitchcock
+# The long way...
+#############
+
+# Alfred Hitchcock's Id (34658)
+Select id 
+from imdb_ijs.directors 
+where 
+last_name = 'Hitchcock' 
+and first_name = 'Alfred (I)'
+;
+
+# Movies Ids of Hitchcock's Id (34658)
+Select group_concat(movie_id) 
+from imdb_ijs.movies_directors 
+where 
+director_id = 34658
+; 
+
+# Movies by Hitchcock
+Select *
+from imdb_ijs.movies
+where id in
+(2371,12782,25091,38614,40111,43421,58803,85669,92282,96991,98761,99522,108343,109241,117557,119872,150797,154110,165221,183833,190327,193373,203534,203535,204854,206255,206824,220310,220779,222774,235062,235676,236663,236699,248413,258033,266574,273543,273585,277627,278493,281546,284904,284916,292297,296767,303992,309651,310843,312782,316323,320308,334136,335896,336141,340552,345970,352639,358879,359928,368952,372437,406455,407103)
+order by year, name
+;
+
+#############
+# All movies directed by Hitchcock
+# The short way...
+#############
+Select m.*
+from 
+imdb_ijs.directors as d
+join
+imdb_ijs.movies_directors as md
+on
+d.id = md.director_id
+join
+imdb_ijs.movies as m
+on
+md.movie_id = m.id
+where 
+last_name = 'Hitchcock' 
+and first_name = 'Alfred (I)'
+order by year, name
+;
+
 # Colors, and select from a fixed list
 Select *
 from
@@ -60,55 +110,6 @@ UNION SELECT 'Black') as c,
 (SELECT 'Small' AS Size
 UNION SELECT 'Medium'
 UNION SELECT 'Large') as s
-;
-
-#############
-# All movies directed by Hitchcock
-# The long way...
-#############
-
-# Alfred Hitchcock's Id (34658)
-Select id 
-from imdb_ijs.directors 
-where 
-last_name = 'Hitchcock' 
-and first_name = 'Alfred (I)'
-;
-
-# Movies Ids of Hitchcock's Id (34658)
-Select group_concat(movie_id) 
-from imdb_ijs.movies_directors 
-where 
-director_id = 34658
-; 
-
-# Movies by Hitchcock
-Select *
-from imdb_ijs.movies
-where id in
-(2371,12782,25091,38614,40111,43421,58803,85669,92282,96991,98761,99522,108343,109241,117557,119872,150797,154110,165221,183833,190327,193373,203534,203535,204854,206255,206824,220310,220779,222774,235062,235676,236663,236699,248413,258033,266574,273543,273585,277627,278493,281546,284904,284916,292297,296767,303992,309651,310843,312782,316323,320308,334136,335896,336141,340552,345970,352639,358879,359928,368952,372437,406455,407103)
-order by year, name
-;
-
-#############
-# All movies directed by Hitchcock
-# The short way...
-#############
-Select m.*
-from 
-imdb_ijs.directors as d
-join
-imdb_ijs.movies_directors as md
-on
-d.id = md.director_id
-join
-imdb_ijs.movies as m
-on
-md.movie_id = m.id
-where 
-last_name = 'Hitchcock' 
-and first_name = 'Alfred (I)'
-order by year, name
 ;
 
 # Directors and their movies (if exists)
