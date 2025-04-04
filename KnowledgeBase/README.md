@@ -40,3 +40,7 @@
 2. [BGU 2020](https://www.studocu.com/il/document/%D7%90%D7%95%D7%A0%D7%99%D7%91%D7%A8%D7%A1%D7%99%D7%98%D7%AA-%D7%91%D7%9F-%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%9F-%D7%91%D7%A0%D7%92%D7%91/%D7%91%D7%A1%D7%99%D7%A1%D7%99-%D7%A0%D7%AA%D7%95%D7%A0%D7%99%D7%9D/%D7%91%D7%A1%D7%99%D7%A1%D7%99-%D7%A0%D7%AA%D7%95%D7%A0%D7%99%D7%9D-%D7%9E%D7%91%D7%97%D7%A0%D7%99%D7%9D/44963830)
 3. [Stanford 2004](http://infolab.stanford.edu/~ullman/fcdb/aut04/final.pdf)
 4. [Cambridge past papers](https://www.cl.cam.ac.uk/teaching/exams/pastpapers/t-Databases.html)
+
+
+# Others
+1. [A love letter to the CSV format](https://github.com/medialab/xan/blob/master/docs/LOVE_LETTER.md)
