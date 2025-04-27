@@ -26,7 +26,7 @@ CREATE TABLE imdb_ijs.tmp_roles (
   PRIMARY KEY (actor_id,movie_id,role),
   KEY actor_id (actor_id),
   KEY movie_id (movie_id)
-  # Notice - why they are removed here?
+  # Notice - why are they removed here?
 #  CONSTRAINT roles_ibfk_1 FOREIGN KEY (actor_id) REFERENCES actors (id) ON DELETE CASCADE ON UPDATE CASCADE,
 #  CONSTRAINT roles_ibfk_2 FOREIGN KEY (movie_id) REFERENCES movies (id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ;
