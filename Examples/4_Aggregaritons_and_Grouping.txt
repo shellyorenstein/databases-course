@@ -125,7 +125,7 @@ order by movies
 ; 
 
 
-# Movies with common actors
+# Movies with at least 3 common actors
 DROP TABLE IF EXISTS imdb_ijs.movie_pairs_by_actors; # Drop is important for reruns
 create table imdb_ijs.movie_pairs_by_actors
 as
@@ -143,7 +143,7 @@ group by
 fid
 , sid
 having
-count(distinct f.actor_id) >= 1
+count(distinct f.actor_id) >= 3
 ;
 
 # In class exercises
