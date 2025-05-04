@@ -96,4 +96,14 @@ on
 m.id = r.movie_id
 ;
 
-
+# How many rows will we get? Is it sepcific to these tables?
+select count(*)
+from
+imdb_ijs.tmp_movies as m
+join
+imdb_ijs.tmp_roles as r
+on
+m.id = r.movie_id
+where
+r.movie_id is null
+;
