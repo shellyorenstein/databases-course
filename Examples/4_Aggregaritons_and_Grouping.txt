@@ -125,7 +125,7 @@ order by movies
 ; 
 
 
-# Movies with at least 3 common actors
+# Movies pairs with at least 3 common actors
 DROP TABLE IF EXISTS imdb_ijs.movie_pairs_by_actors; # Drop is important for reruns
 create table imdb_ijs.movie_pairs_by_actors
 as
