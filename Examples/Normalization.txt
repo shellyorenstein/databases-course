@@ -1,0 +1,53 @@
+# We will start with non normalization table, point at problems and fix them by adding normalization
+
+# Starting
+DROP TABLE IF EXISTS customers;
+
+CREATE TABLE customers (
+  id varchar(100),
+  name varchar(100),
+  address varchar(100),
+  city_status int,
+  orders varchar(100),
+  categories varchar(100),
+  Pythagorean_theorem varchar(100),
+  PRIMARY KEY (id)
+);
+
+insert into customers values(1, 'Gidi', 'Dizengoff 99, Tel-Aviv', 9, '1,2,3', '"VIP"', 'a^2 + b^2 = c^2');
+insert into customers values(2, 'Atzmon Anat', 'Dizengoff 99/1, Tel Aviv', 9, '4', '"VIP", "New"', 'a^2 + b^2 = c^2');
+insert into customers values(3, 'Meir Suissa', 'Dizengoff, Tel Aviv-Yaffo', 9, '', '"New"', 'a^2 + b^2 = c^2');
+insert into customers values(4, 'Gali Atari', 'Dizengoff 99, Tel Aviv-Yaffo', 9, '', '"New"', 'a^2 + b^2 = c^2');
+insert into customers values(5, 'Pluto', 'Kibbutz Megiddo', 10, '5, 6', '"VIP"', 'a^2 + b^2 = c^2');
+
+
+select * from customers;
+
+# With all the respect to the Pythagorean theorem, it has nothonig to do with our customers so we drop it.
+# Seems so obvious.
+# Nodbody will do it in real life, right?
+# You will be surprised...
+
+
+# With only related information
+DROP TABLE IF EXISTS customers;
+
+CREATE TABLE customers (
+  id varchar(100),
+  name varchar(100),
+  address varchar(100),
+  city_status int,
+  orders varchar(100),
+  categories varchar(100),
+  PRIMARY KEY (id)
+);
+
+insert into customers values(1, 'Gidi', 'Dizengoff 99, Tel-Aviv', 9, '1,2,3', '"VIP"');
+insert into customers values(2, 'Atzmon Anat', 'Dizengoff 99/1, Tel Aviv', 9, '4', '"VIP", "New"');
+insert into customers values(3, 'Meir Suissa', 'Dizengoff, Tel Aviv-Yaffo', 9, '', '"New"');
+insert into customers values(4, 'Gali Atari', 'Dizengoff 99, Tel Aviv-Yaffo', 9, '', '"New"');
+insert into customers values(5, 'Pluto', 'Kibbutz Megiddo', 10, '5, 6', '"VIP"');
+
+ 
+select * from customers;
+
