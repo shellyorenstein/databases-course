@@ -260,3 +260,132 @@ categories as cat
 on
 cc.category_id = cat.id
 ;
+
+# Customers has one to many relation with orders.
+# Each customer can have many orders but an order might belong to a single customer.
+# Let's create a table for them too.
+
+# Clean up - most remove referencing table before the referenced table
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS customers_categories;
+DROP TABLE IF EXISTS customers; # Should be dropped before cities due to the foraign key
+DROP TABLE IF EXISTS cities;
+
+CREATE TABLE cities (
+  id int,
+  name varchar(100),
+  status int, # In cities table, the name status is more suitable than city_status
+  PRIMARY KEY (id)
+);
+
+insert into cities values(1 ,'Kibbutz Megiddo', 10);
+insert into cities values(2, 'Tel-Aviv', 9);
+
+ 
+select * from cities;
+
+
+
+DROP TABLE IF EXISTS categories;
+
+CREATE TABLE categories (
+  id int,
+  name varchar(100),
+  importance int, 
+  PRIMARY KEY (id),
+  constraint Check_importnace CHECK (importance>=1 and importance <= 10)
+);
+
+insert into categories values(1 ,'VIP', 10);
+insert into categories values(2, 'New', 8);
+
+ 
+select * from categories;
+
+
+DROP TABLE IF EXISTS customers;
+
+CREATE TABLE customers (
+  id int,
+  first_name varchar(100),
+  last_name varchar(100),
+  street varchar(100),
+  house_number int,
+  city_id int,
+  PRIMARY KEY (id),
+  FOREIGN KEY (city_id) REFERENCES cities(id) # Now people cannot live in non-existing cities
+);
+
+insert into customers values(1, 'Gidi', 'Gov', 'Dizengoff', 99, 2);
+insert into customers values(2, 'Anat', 'Atzmon', 'Dizengoff', 99, 2);
+insert into customers values(3, 'Meir', 'Suissa', 'Dizengoff', null, 2);
+insert into customers values(4, 'Gali', 'Atari', 'Dizengoff',99,  2);
+insert into customers values(5, 'Pluto', '', null, null, 1);
+
+ 
+select * from customers;
+
+
+DROP TABLE IF EXISTS customers_categories;
+
+CREATE TABLE customers_categories (
+  customer_id int,
+  category_id int,
+  PRIMARY KEY (customer_id, category_id),
+  FOREIGN KEY (customer_id) REFERENCES customers(id),
+  FOREIGN KEY (category_id) REFERENCES categories(id)
+);
+ 
+insert into customers_categories values(1, 1);
+insert into customers_categories values(2, 1);
+insert into customers_categories values(2, 2);
+insert into customers_categories values(3, 2);
+insert into customers_categories values(4, 2);
+insert into customers_categories values(5, 1);
+
+select *
+from
+customers_categories as cc
+join
+customers as cst
+on
+cc.customer_id = cst.id
+join
+categories as cat
+on
+cc.category_id = cat.id
+;
+
+
+DROP TABLE IF EXISTS orders;
+
+CREATE TABLE orders (
+  id int, # The order id
+  customer_id int,
+  purchase_date date DEFAULT (CURRENT_DATE),
+  branch varchar(100), # One can add a table for branches
+  PRIMARY KEY (id),
+  FOREIGN KEY (customer_id) REFERENCES customers(id)
+);
+ 
+
+insert into orders(id, customer_id, branch) values(1, 1, 'Dizengoff, Tel Aviv');
+insert into orders(id, customer_id, branch) values(2, 1, 'Dizengoff, Tel Aviv');
+insert into orders(id, customer_id, branch) values(3, 1, 'Dizengoff, Tel Aviv');
+insert into orders(id, customer_id, branch) values(4, 2, 'Dizengoff, Tel Aviv');
+insert into orders(id, customer_id, branch) values(5, 5, 'Kibbutz Megiddo');
+insert into orders(id, customer_id, branch) values(6, 5, 'Jerusalem');
+
+
+
+select *
+from
+orders as o
+join
+customers as cst
+on
+o.customer_id = cst.id
+;
+
+# Note that order item do not appear here.
+# How should you represent them?
