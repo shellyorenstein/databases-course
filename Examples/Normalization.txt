@@ -83,7 +83,7 @@ select * from customers;
 # Note that:
 # 1. We should guess Anat's house number, and lose her apartment number
 # 2. We don't have Meir's house number
-# 3. There are no street in a Kibbutz
+# 3. There are no streets in a Kibbutz
 
 DROP TABLE IF EXISTS customers;
 
