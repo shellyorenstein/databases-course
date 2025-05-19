@@ -35,6 +35,10 @@
 3. [Microsoft](https://learn.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description)
 4. [scholarhat](https://www.scholarhat.com/tutorial/sqlserver/database-normalization-basics)
 
+# Database representation examples
+1. [CDs and artists](http://people.cs.nott.ac.uk/sbzmpp/G51DBS/exercises/Exercise1.pdf)
+2. [https://database-modelling.com/](https://database-modelling.com/)
+   
 # Exams
 1. [TAU 2008](https://courses.cs.tau.ac.il/0368-3458/databases2011/assignments/DB08.pdf)
 2. [BGU 2020](https://www.studocu.com/il/document/%D7%90%D7%95%D7%A0%D7%99%D7%91%D7%A8%D7%A1%D7%99%D7%98%D7%AA-%D7%91%D7%9F-%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%9F-%D7%91%D7%A0%D7%92%D7%91/%D7%91%D7%A1%D7%99%D7%A1%D7%99-%D7%A0%D7%AA%D7%95%D7%A0%D7%99%D7%9D/%D7%91%D7%A1%D7%99%D7%A1%D7%99-%D7%A0%D7%AA%D7%95%D7%A0%D7%99%D7%9D-%D7%9E%D7%91%D7%97%D7%A0%D7%99%D7%9D/44963830)
