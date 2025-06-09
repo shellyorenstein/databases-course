@@ -1,0 +1,22 @@
+# All
+explain  select 
+ *
+from
+movies
+;
+
+# key
+explain  select 
+ *
+from
+movies
+where id = 7
+;
+
+# No key
+explain  select 
+ *
+from
+movies
+where year = 1990
+;
